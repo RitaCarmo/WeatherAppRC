@@ -1,0 +1,62 @@
+body {
+  margin: 100px;
+}
+.card {
+  width: 300px;
+  height: 110px;
+  max-width: 540px;
+  background: none;
+  margin: 0 auto;
+}
+
+#currentCity {
+  font-size: 50px;
+  font-weight: bold;
+  line-height: 50px;
+  text-align: center;
+  display: block;
+}
+
+input {
+  margin-right: 10px;
+  flex: 1;
+}
+
+button {
+  margin: 0 10px;
+}
+
+.col-md-4 {
+  width: 100px;
+  height: 140px;
+  display: block;
+  margin-right: auto;
+  margin-top: 5px;
+}
+.search {
+  display: block;
+}
+.container {
+  border-style: solid;
+  border-radius: 10px;
+  background-image: linear-gradient(
+    to top,
+    #bdc2e8 0%,
+    #bdc2e8 1%,
+    #e6dee9 100%
+  );
+  margin: 10px auto 10px auto;
+  padding: 20px 10px;
+  width: 900px;
+}
+
+.card-1 {
+  text-align: center;
+}
+.card-img-top {
+  width: 350px;
+  height: 350px;
+}
+footer {
+  text-align: center;
+}

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Challenge2</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://kit.fontawesome.com/9309e51f3c.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="src/styles.css" />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-7">
+          <form id="search-bar" class="form-inline">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Search new city"
+              id="lookForCity"
+            />
+      <button type="submit" class="btn btn-outline-dark" id="procurar">
+        <i class="fas fa-search"></i>
+      </button>
+            <button
+              id="current-location"
+              class="btn btn-outline-dark"
+              type="button"
+            >
+              Current Location
+            </button>
+            
+          </form>
+          <div class="row">
+            <div class="col">
+              <div class="card-1">
+                <span id="currentCity"> Your City </span>
+
+                <p><h5 class="card-1-title">
+                  Today, May 30
+                </h5></p>
+
+                <img src="src/sun.PNG" class="card-img-top" alt="sun image" />
+                <br />
+                <br />
+
+                <span id="current-temp"
+                  >Currently
+                  <span id="current-degrees"></span>
+                </span>
+                <br />
+                <h3 id="temperatureDescription">Clear</h3>
+                <p class="card-1-text">
+                 <i class="fas fa-arrow-alt-circle-up"id="Maximun"> </i>40º
+                  <i class="fas fa-arrow-alt-circle-down" ></i>10º
+                </p>
+               
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-5 nextdays">
+          <div class="card mb-3">
+            <div class="row no-gutters">
+              <div class="col-md-4">
+                <img
+                  src="src/overcast.PNG"
+                  class="card-img"
+                  alt="cloud and sun image"
+                />
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title">Sun, may 31</h5>
+
+                  <p class="card-text">
+                    <i class="far fa-arrow-alt-circle-up"></i>30º
+                    <i class="far fa-arrow-alt-circle-down"></i>10º<br />
+                    <small class="text-muted">Partly Cloudy</small>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card mb-3">
+            <div class="row no-gutters">
+              <div class="col-md-4">
+                <img src="src/cloud.PNG" class="card-img" alt="cloud image" />
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title">Mon, June 1</h5>
+                  <p class="card-text">
+                    <i class="far fa-arrow-alt-circle-up"></i>30º
+                    <i class="far fa-arrow-alt-circle-down"></i>10º<br />
+                    <small class="text-muted">Mostly Cloudy</small>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card mb-3">
+            <div class="row no-gutters">
+              <div class="col-md-4">
+                <img src="src/snow.PNG" class="card-img" alt="snow image" />
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title">Tue, June 2</h5>
+                  <p class="card-text">
+                    <i class="far fa-arrow-alt-circle-up"></i>30º
+                    <i class="far fa-arrow-alt-circle-down"></i>10º<br />
+                    <small class="text-muted">Snow</small>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card mb-3">
+            <div class="row no-gutters">
+              <div class="col-md-4">
+                <img
+                  src="src/thunder.PNG"
+                  class="card-img"
+                  alt="thunder image"
+                />
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title">Wed, June 3</h5>
+                  <p class="card-text">
+                    <i class="far fa-arrow-alt-circle-up"></i>30º
+                    <i class="far fa-arrow-alt-circle-down"></i>10º<br />
+                    <small class="text-muted">Thunder Storm</small>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card mb-3">
+            <div class="row no-gutters">
+              <div class="col-md-4">
+                <img src="src/cloud.PNG" class="card-img" alt="cloud image" />
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title">Thu, June 4</h5>
+                  <p class="card-text">
+                    <i class="far fa-arrow-alt-circle-up"></i>30º
+                    <i class="far fa-arrow-alt-circle-down"></i>10º<br />
+                    <small class="text-muted">Mostly Cloudy</small>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+<footer>
+  Coded by <a href="mailto:rita-carmo@hotmail.com">Rita Carmo</a>
+  open-sourced on
+  <a href="https://github.com/RitaCarmo/weatherApp" target="_blank">GitHub</a>
+</footer>
+    <script src="src/index.js"></script>
+  </body>
+</html>
