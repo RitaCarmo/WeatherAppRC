@@ -44,6 +44,12 @@ function searchInfo(response) {
   let cityHeader = document.querySelector("#currentCity");
   let description = document.querySelector("#temperatureDescription");
   description.innerHTML = response.data.weather[0].description;
+  let iconElement = document.querySelector("#icon");
+  iconElement.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+  );
+  iconElement.setAttribute("alt", response.data.weather[0].description);
 
   cityHeader.innerHTML = currentCity;
   showTemp.innerHTML = `${temperature}ºC`;

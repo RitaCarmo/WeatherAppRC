@@ -60,3 +60,6 @@ button {
 footer {
   text-align: center;
 }
+#temperatureDescription {
+  text-transform: capitalize;
+}
