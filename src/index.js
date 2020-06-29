@@ -35,6 +35,43 @@ function updateCurrentTime() {
 
 updateCurrentTime();
 
+function formatHours(timestamp) {
+  let now = new Date(timestamp);
+  let h5 = document.querySelector("h5");
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday"
+  ];
+
+  let today = days[now.getDay()];
+  let hour = now.getHours();
+  let minutes = now.getMinutes();
+  let date = now.getDate();
+  let months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December"
+  ];
+  let month = months[now.getMonth()];
+  h5.innerHTML = `${today}, ${month} ${date} -  ${hour}:${minutes}h`;
+
+  return `${hour}:${minutes}`;
+}
+
 //get weather API
 
 function searchInfo(response) {
@@ -59,11 +96,51 @@ function searchCity(event) {
   event.preventDefault();
   let city = document.querySelector("#lookForCity");
   let apiKey = "bdba0ebff82207db7458c1987a1d52e6";
-  let url = `https://api.openweathermap.org/data/2.5/weather?q=${city.value}&appid=${apiKey}&units=metric`;
-  axios.get(url).then(searchInfo);
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city.value}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(searchInfo);
+
+  apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city.value}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayForecast);
 }
 let searchBar = document.querySelector("#search-bar");
 searchBar.addEventListener("submit", searchCity);
+
+function displayForecast(response) {
+  let forecastElement = document.querySelector("#forecast");
+  let forecast = response.data.list[0];
+  console.log(forecast);
+
+  forecastElement.innerHTML = `
+  <div class="card mb-3">
+            <div class="row no-gutters">
+              <div class="col-md-4">
+                <img
+                  src="http://openweathermap.org/img/wn/${
+                    forecast.weather[0].icon
+                  }@2x.png"
+                  class="card-img"
+                  alt="cloud and sun image"
+                  id="icon1"
+                />
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title">${formatHours(forecast.dt * 1000)}</h5>
+
+                  <p class="card-text">
+                    <i class="far fa-arrow-alt-circle-up">${Math.round(
+                      forecast.main.temp_max
+                    )}º</i>
+                    <i class="far fa-arrow-alt-circle-down">${Math.round(
+                      forecast.main.temp_min
+                    )}º</i><br />
+                    <small class="text-muted">Partly Cloudy</small>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>`;
+}
 
 //actual position - ok
 
