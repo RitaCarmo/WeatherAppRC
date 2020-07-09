@@ -107,10 +107,12 @@ searchBar.addEventListener("submit", searchCity);
 
 function displayForecast(response) {
   let forecastElement = document.querySelector("#forecast");
-  let forecast = response.data.list[0];
-  console.log(forecast);
+  forecastElement.innerHTML = null;
+  let forecast = null;
 
-  forecastElement.innerHTML = `
+  for (let index = 0; index < 5; index++) {
+    forecast = response.data.list[index];
+    forecastElement.innerHTML += `
   <div class="card mb-3">
             <div class="row no-gutters">
               <div class="col-md-4">
@@ -134,12 +136,15 @@ function displayForecast(response) {
                     <i class="far fa-arrow-alt-circle-down">${Math.round(
                       forecast.main.temp_min
                     )}º</i><br />
-                    <small class="text-muted">Partly Cloudy</small>
+                    <small class="text-muted">${
+                      forecast.weather.description
+                    }</small>
                   </p>
                 </div>
               </div>
             </div>
           </div>`;
+  }
 }
 
 //actual position - ok
