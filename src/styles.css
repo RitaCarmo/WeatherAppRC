@@ -63,3 +63,10 @@ footer {
 #temperatureDescription {
   text-transform: capitalize;
 }
+#forecast {
+  visibility: hidden;
+}
+
+.card-title {
+  font-size: 15px;
+}
