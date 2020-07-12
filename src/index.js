@@ -101,7 +101,7 @@ var app = {
     apiUrl2 = `https://api.openweathermap.org/data/2.5/forecast?q=${city.value}&appid=${app.apiKey}&units=metric`;
     axios
       .get(apiUrl2)
-      .then(displayForecast)
+      .then(app.displayForecast)
       .catch(function(err) {
         console.log(err);
       })
@@ -123,7 +123,7 @@ var app = {
     apiUrl2 = `https://api.openweathermap.org/data/2.5/forecast?q=${response.data.name}&appid=${app.apiKey}&units=metric`;
     axios
       .get(apiUrl2)
-      .then(displayForecast)
+      .then(app.displayForecast)
       .catch(function(err) {
         console.log(err);
       })
@@ -151,19 +151,16 @@ var app = {
     currentLocation.addEventListener("click", app.findCurrentLocation);
 
     app.updateCurrentTime();
-  }
-};
+  },
 
-app.runFirst();
+  displayForecast: function(response) {
+    let forecastElement = document.querySelector("#forecast");
+    forecastElement.innerHTML = null;
+    let forecast = null;
 
-function displayForecast(response) {
-  let forecastElement = document.querySelector("#forecast");
-  forecastElement.innerHTML = null;
-  let forecast = null;
-
-  for (let index = 0; index < 5; index++) {
-    forecast = response.data.list[index];
-    forecastElement.innerHTML += `
+    for (let index = 0; index < 5; index++) {
+      forecast = response.data.list[index];
+      forecastElement.innerHTML += `
   <div class="card mb-3">
             <div class="row no-gutters">
               <div class="col-md-4">
@@ -175,7 +172,7 @@ function displayForecast(response) {
                   alt="cloud and sun image"
                   id="icon1"
                 />
-              </div>
+              </div> 
               <div class="col-md-8">
                 <div class="card-body">
                   <h5 class="card-title">${app.formatHours(
@@ -183,17 +180,20 @@ function displayForecast(response) {
                   )}</h5>
 
                   <p class="card-text">
-                    <i class="far fa-arrow-alt-circle-up">${Math.round(
+                    <i class="far fa-arrow-alt-circle-up">&nbsp${Math.round(
                       forecast.main.temp_max
                     )}º</i>
-                    <i class="far fa-arrow-alt-circle-down">${Math.round(
+                    <i class="far fa-arrow-alt-circle-down">&nbsp${Math.round(
                       forecast.main.temp_min
                     )}º</i><br />
-                    
+                    <small>${forecast.weather[0].description}</small>
                   </p>
                 </div>
               </div>
             </div>
           </div>`;
+    }
   }
-}
+};
+
+app.runFirst();
